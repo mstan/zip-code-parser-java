@@ -15,6 +15,11 @@ public class ZipCodeRangeList {
         zipCodeRangeList.add(zipCodeRange);
     }
 
+    // -- getters and setters --//
+    public ZipCodeRange getElementAtIndex(int i) {
+        return zipCodeRangeList.get(i);
+    }
+
     public int getLength() {
         return zipCodeRangeList.size();
     }
@@ -22,7 +27,6 @@ public class ZipCodeRangeList {
     public void set(List<ZipCodeRange> zipCodeRangeList) {
         this.zipCodeRangeList = zipCodeRangeList;
     }
-
 
 
     // prints out the final result to console in a neatly formatted string
@@ -52,8 +56,7 @@ public class ZipCodeRangeList {
 
             // if collapsedZipCodeRangeList's last element's end is greater than the current zipCodeRangeList[i]'s end
             if( (collapsedZipCodeRangeList.get( collapsedZipCodeRangeList.size() - 1 ).getEnd() ) >= ( this.zipCodeRangeList.get(i).getStart()) ) {
-
-                collapsedZipCodeRangeList.get( collapsedZipCodeRangeList.size() - 1).setEnd( this.zipCodeRangeList.get(i).getStart() );
+                ZipCodeRange zipCodeRangeElement = collapsedZipCodeRangeList.get( collapsedZipCodeRangeList.size() - 1).setEnd( this.zipCodeRangeList.get(i).getEnd() );
             } else {
                 // if collapsedZipCodeRangeList's last element's endRange is not greater than the current, push the whole
                 // zipCodeRangeList[i] to collapsedZipCodeRangeList.
@@ -62,7 +65,6 @@ public class ZipCodeRangeList {
         }
 
         this.set(collapsedZipCodeRangeList);
-
     }
 
     // sort zipCodeRangeList in ascending order, ordering by zipCodeRange.start] as the value to sort by
@@ -70,7 +72,7 @@ public class ZipCodeRangeList {
         Collections.sort(zipCodeRangeList);
     }
 
-    // order each zipCodeRange's start and end to ensure that each pair is positive.
+    // order each zipCodeRange's start and end to ensure that each pair is non-negative.
     // (e.g.) [95816,95811] would be switched to [95811,95816].
     // [95825,94040] would remain the same.
     public void order() {
@@ -79,7 +81,8 @@ public class ZipCodeRangeList {
             int endRange = this.zipCodeRangeList.get(i).getEnd();
 
             if (startRange > endRange) {
-                this.zipCodeRangeList.set(i, new ZipCodeRange(startRange, endRange));
+                // flip the assignments here so that startRange = endRange and vice versa
+                this.zipCodeRangeList.set(i, new ZipCodeRange(endRange, startRange));
             }
         }
     }

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Main {
     // take a string and try to parse it into a ZipCodeRangeList. Regular expressions are used to look for something
     // in the format of [#####,#####][#####,#####]...[#####,#####]
-    private static ZipCodeRangeList parseInput(String input) {
+    public static ZipCodeRangeList parseInput(String input) {
         // declare a list of ZipCodeRange
         ZipCodeRangeList zipCodeRangeList = new ZipCodeRangeList();
 
@@ -29,7 +29,7 @@ public class Main {
     }
 
     // checks to see if the input is valid based on a regular expression
-    private static boolean isValidInput(String string) {
+    public static boolean isValidInput(String string) {
         // pattern checks to see if the value only contains numbers, spaces, "," "]" or "["
         String pattern = "^[\\[\\], \\pN]+$";
         return string.matches(pattern);

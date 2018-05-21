@@ -16,11 +16,6 @@ public class ZipCodeRange implements Comparable<ZipCodeRange> {
     }
 
     public ZipCodeRange(int start, int end) {
-        // in our constructor,
-        if( start > end) {
-            this.start
-        }
-
         this.start = start;
         this.end = end;
     }
@@ -38,10 +33,12 @@ public class ZipCodeRange implements Comparable<ZipCodeRange> {
     //-- Setters --//
 
     public ZipCodeRange setStart(int start) {
-        return new ZipCodeRange(start, this.end);
+        this.start = start;
+        return this;
     }
     public ZipCodeRange setEnd(int end) {
-        return new ZipCodeRange(this.start, end);
+        this.end = end;
+        return this;
     }
 
     // -- Functions -- //
