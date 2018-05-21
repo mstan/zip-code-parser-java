@@ -15,7 +15,11 @@ public class ZipCodeRangeList {
         zipCodeRangeList.add(zipCodeRange);
     }
 
-    public void setZipCodeRangeList(List<ZipCodeRange> zipCodeRangeList) {
+    public int getLength() {
+        return zipCodeRangeList.size();
+    }
+
+    public void set(List<ZipCodeRange> zipCodeRangeList) {
         this.zipCodeRangeList = zipCodeRangeList;
     }
 
@@ -57,7 +61,7 @@ public class ZipCodeRangeList {
             }
         }
 
-        this.setZipCodeRangeList(collapsedZipCodeRangeList);
+        this.set(collapsedZipCodeRangeList);
 
     }
 
